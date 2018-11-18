@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1FF2952921A0A62500049250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2952821A0A62500049250 /* AppDelegate.swift */; };
-		1FF2952B21A0A62500049250 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2952A21A0A62500049250 /* ViewController.swift */; };
+		1FF2952B21A0A62500049250 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2952A21A0A62500049250 /* BoardViewController.swift */; };
 		1FF2952D21A0A62600049250 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FF2952C21A0A62600049250 /* Assets.xcassets */; };
 		1FF2953021A0A62600049250 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FF2952E21A0A62600049250 /* Main.storyboard */; };
 		1FF2953C21A0A62600049250 /* ChineseChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2953B21A0A62600049250 /* ChineseChessTests.swift */; };
 		1FF2954721A0A62600049250 /* ChineseChessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2954621A0A62600049250 /* ChineseChessUITests.swift */; };
+		1FF2955821A0CC1200049250 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2955721A0CC1200049250 /* Piece.swift */; };
+		1FF2955A21A0D10500049250 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2955921A0D10500049250 /* BoardView.swift */; };
+		1FF2955C21A0E1AA00049250 /* BoardTextureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2955B21A0E1AA00049250 /* BoardTextureView.swift */; };
+		1FF2955F21A0E6C000049250 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2955E21A0E6C000049250 /* Board.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +39,7 @@
 /* Begin PBXFileReference section */
 		1FF2952521A0A62500049250 /* ChineseChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FF2952821A0A62500049250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1FF2952A21A0A62500049250 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1FF2952A21A0A62500049250 /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		1FF2952C21A0A62600049250 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FF2952F21A0A62600049250 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FF2953121A0A62600049250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +50,10 @@
 		1FF2954221A0A62600049250 /* ChineseChessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChineseChessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FF2954621A0A62600049250 /* ChineseChessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseChessUITests.swift; sourceTree = "<group>"; };
 		1FF2954821A0A62600049250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FF2955721A0CC1200049250 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
+		1FF2955921A0D10500049250 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		1FF2955B21A0E1AA00049250 /* BoardTextureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTextureView.swift; sourceTree = "<group>"; };
+		1FF2955E21A0E6C000049250 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +104,10 @@
 		1FF2952721A0A62500049250 /* ChineseChess */ = {
 			isa = PBXGroup;
 			children = (
+				1FF2955621A0CC0600049250 /* Model */,
 				1FF2952821A0A62500049250 /* AppDelegate.swift */,
-				1FF2952A21A0A62500049250 /* ViewController.swift */,
-				1FF2952C21A0A62600049250 /* Assets.xcassets */,
-				1FF2952E21A0A62600049250 /* Main.storyboard */,
-				1FF2953121A0A62600049250 /* Info.plist */,
-				1FF2953221A0A62600049250 /* ChineseChess.entitlements */,
+				1FF2955521A0A6B300049250 /* Interface */,
+				1FF2955421A0A63600049250 /* Resources */,
 			);
 			path = ChineseChess;
 			sourceTree = "<group>";
@@ -122,6 +128,44 @@
 				1FF2954821A0A62600049250 /* Info.plist */,
 			);
 			path = ChineseChessUITests;
+			sourceTree = "<group>";
+		};
+		1FF2955421A0A63600049250 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1FF2953221A0A62600049250 /* ChineseChess.entitlements */,
+				1FF2952C21A0A62600049250 /* Assets.xcassets */,
+				1FF2953121A0A62600049250 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1FF2955521A0A6B300049250 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				1FF2955D21A0E69800049250 /* Board */,
+				1FF2952E21A0A62600049250 /* Main.storyboard */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		1FF2955621A0CC0600049250 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FF2955721A0CC1200049250 /* Piece.swift */,
+				1FF2955E21A0E6C000049250 /* Board.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1FF2955D21A0E69800049250 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				1FF2952A21A0A62500049250 /* BoardViewController.swift */,
+				1FF2955921A0D10500049250 /* BoardView.swift */,
+				1FF2955B21A0E1AA00049250 /* BoardTextureView.swift */,
+			);
+			path = Board;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,8 +298,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FF2952B21A0A62500049250 /* ViewController.swift in Sources */,
+				1FF2955C21A0E1AA00049250 /* BoardTextureView.swift in Sources */,
+				1FF2952B21A0A62500049250 /* BoardViewController.swift in Sources */,
+				1FF2955F21A0E6C000049250 /* Board.swift in Sources */,
+				1FF2955A21A0D10500049250 /* BoardView.swift in Sources */,
 				1FF2952921A0A62500049250 /* AppDelegate.swift in Sources */,
+				1FF2955821A0CC1200049250 /* Piece.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,11 +469,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ChineseChess/ChineseChess.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ChineseChess/Resources/ChineseChess.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = AM89ND2ZY7;
-				INFOPLIST_FILE = ChineseChess/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ChineseChess/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -440,11 +488,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ChineseChess/ChineseChess.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ChineseChess/Resources/ChineseChess.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = AM89ND2ZY7;
-				INFOPLIST_FILE = ChineseChess/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ChineseChess/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
