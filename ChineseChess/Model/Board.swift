@@ -98,6 +98,10 @@ class Board {
         return eat
     }
     
+    func makeMove(_ move: Move) {
+        self.move(move.origin, to: move.dest)
+    }
+    
     /**
      Redo last move
      */

@@ -9,11 +9,16 @@
 import Cocoa
 
 class BoardViewController: NSViewController {
-
+    
+    
+    @IBOutlet weak var boardView: BoardView!
+    var gameState = GameState()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        gameState.delegate = self
+        boardView.delegate = self
     }
 
     override var representedObject: Any? {
@@ -25,3 +30,19 @@ class BoardViewController: NSViewController {
 
 }
 
+extension BoardViewController: BoardViewDelegate {
+    var board: Board {
+        return gameState.board
+    }
+    
+    func didSelect(_ pos: Pos) {
+        print("selected: \(pos)")
+    }
+}
+
+extension BoardViewController: GameStateDelegate {
+    
+    func gameStateDidUpdate() {
+        
+    }
+}

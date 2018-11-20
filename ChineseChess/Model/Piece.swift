@@ -44,6 +44,7 @@ protocol PieceProtocol {
     var identity: Identity {get}
     var color: Color {get}
     var pos: Pos {get set}
+    func availableMoves() -> [Move]
 }
 
 class Piece: PieceProtocol {
@@ -58,5 +59,11 @@ class Piece: PieceProtocol {
     
     func copy() -> Piece {
         return identity.spawn(color)
+    }
+    
+
+    /// To be overridden by subclasses. This is an empty implementation.
+    func availableMoves() -> [Move] {
+        return [Move]()
     }
 }
