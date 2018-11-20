@@ -28,5 +28,5 @@ class ComputerPlayer: Player {
 }
 
 protocol PlayerDelegate {
-    func makeMove(move: Move)
+    func makeMove(_ move: Move)
 }

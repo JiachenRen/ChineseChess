@@ -56,6 +56,26 @@ import Cocoa
             setNeedsDisplay(bounds)
         }
     }
+    var availableMoves: [Move]? {
+        didSet {
+            setNeedsDisplay(bounds)
+            animationTimer?.invalidate()
+            if availableMoves != nil {
+                animationTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateRotOffset), userInfo: nil, repeats: true)
+                animationTimer?.fire()
+            }
+        }
+    }
+    var rotOffset: CGFloat = 0 {
+        didSet {
+            setNeedsDisplay(bounds)
+        }
+    }
+    var animationTimer: Timer?
+    
+    @objc func updateRotOffset() {
+        rotOffset = rotOffset + .pi / 50
+    }
     
     
     override func draw(_ dirtyRect: NSRect) {
@@ -68,11 +88,32 @@ import Cocoa
         
         drawGrid()
         drawPieces()
+        drawAvailableMoves()
+    }
+    
+    private func drawAvailableMoves() {
+        availableMoves?.map{$0.dest}.map{onScreen($0)}.forEach {ctr in
+            let color = delegate?.board.curPlayer == .black ? blackColor : redColor
+            cgContext?.saveGState()
+            cgContext?.setStrokeColor(color.cgColor)
+            cgContext?.setAlpha(0.8)
+            cgContext?.setLineCap(.round)
+            cgContext?.beginPath()
+            cgContext?.setLineWidth(gridLineWidth)
+            let angles: [CGFloat] = [0, .pi / 2, .pi, .pi / 2 * 3]
+            angles.forEach {
+                let s = 0.4 + $0 + rotOffset
+                let e = $0 + .pi / 2 - 0.4 + rotOffset
+                cgContext?.addArc(center: ctr, radius: pieceRadius / 2, startAngle: s, endAngle: e, clockwise: false)
+                cgContext?.strokePath()
+            }
+            
+            cgContext?.restoreGState()
+        }
     }
     
     private func drawPieces() {
-        let board = Board()
-        board.stream.forEach{ piece in
+        delegate?.board.stream.forEach{ piece in
             let ellipse = NSBezierPath(ovalIn: rect(at: piece.pos))
             pieceColor.setFill()
             ellipse.lineWidth = gridLineWidth
@@ -169,13 +210,28 @@ import Cocoa
     override func mouseUp(with event: NSEvent) {
         let loc = relPos(evt: event)
         if loc.x <= 0 || loc.y <= 0 {return}
-        if let l = mouseDownPos {
-            if let p = delegate?.board.get(l), l == onBoard(loc) {
-                if p.color == delegate?.board.curPlayer {
-                    delegate?.didSelect(l)
-                    selected = p
+        // Ensure that mouseDown and mouseUp are at the same pos.
+        if let l = mouseDownPos, l == onBoard(loc) {
+            // Moving takes priority over selection!
+            if let mvs = availableMoves {
+                if let mv = (mvs.filter{$0.dest == l}.first) {
+                    delegate?.didSelectMove(mv)
+                    delegate?.deselect()
+                    return
                 }
             }
+            
+            // If the player selected a piece
+            if let p = delegate?.board.get(l) {
+                if p.color == delegate?.board.curPlayer {
+                    delegate?.didSelect(p)
+                    selected = p
+                    return
+                }
+            }
+            
+            // If the player clicked an empty position
+            delegate?.deselect()
         }
     }
     
@@ -243,7 +299,9 @@ import Cocoa
 
 protocol BoardViewDelegate {
     var board: Board {get}
-    func didSelect(_ pos: Pos)
+    func deselect()
+    func didSelect(_ piece: Piece)
+    func didSelectMove(_ mv: Move)
 }
 
 extension CGPoint {

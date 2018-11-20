@@ -35,14 +35,26 @@ extension BoardViewController: BoardViewDelegate {
         return gameState.board
     }
     
-    func didSelect(_ pos: Pos) {
-        print("selected: \(pos)")
+    func didSelect(_ piece: Piece) {
+        print("selected: \(piece)")
+        let moves = gameState.getAvailableMoves(for: piece)
+        gameState.selected = piece
+        boardView.availableMoves = moves
+    }
+    
+    func didSelectMove(_ mv: Move) {
+        gameState.makeMove(mv)
+    }
+    
+    func deselect() {
+        boardView.selected = nil
+        boardView.availableMoves = nil
     }
 }
 
 extension BoardViewController: GameStateDelegate {
     
     func gameStateDidUpdate() {
-        
+        boardView.setNeedsDisplay(boardView.bounds)
     }
 }

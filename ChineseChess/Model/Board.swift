@@ -199,6 +199,10 @@ struct Pos: Hashable {
         self.col = col
     }
     
+    func isValid() -> Bool {
+        return row <= 9 && row >= 0 && col <= 8 && col >= 0
+    }
+    
     func translateBy(row: Int) -> Pos {
         return Pos(self.row + row, col)
     }
@@ -218,4 +222,16 @@ struct Pos: Hashable {
     func invertCol() -> Pos {
         return Pos(row, 8 - col)
     }
+    
+    static func +(lhs: Pos, rhs: Pos) -> Pos {
+        return Pos(lhs.row + rhs.row, lhs.col + rhs.col)
+    }
+    
+    static func -(lhs: Pos, rhs: Pos) -> Pos {
+        return Pos(lhs.row - rhs.row, lhs.col - rhs.col)
+    }
 }
+
+
+
+

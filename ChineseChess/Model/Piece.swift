@@ -44,7 +44,7 @@ protocol PieceProtocol {
     var identity: Identity {get}
     var color: Color {get}
     var pos: Pos {get set}
-    func availableMoves() -> [Move]
+    func availableMoves(_ board: Board) -> [Pos]
 }
 
 class Piece: PieceProtocol {
@@ -61,9 +61,14 @@ class Piece: PieceProtocol {
         return identity.spawn(color)
     }
     
+    func basicFilter(_ moves: inout [Pos], _ board: Board) {
+        moves = moves.filter{$0.isValid()}.filter {
+            board.get($0)?.color != color
+        }
+    }
 
     /// To be overridden by subclasses. This is an empty implementation.
-    func availableMoves() -> [Move] {
-        return [Move]()
+    func availableMoves(_ board: Board) -> [Pos] {
+        return [Pos]()
     }
 }
