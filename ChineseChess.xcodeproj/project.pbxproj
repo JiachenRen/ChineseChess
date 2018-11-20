@@ -18,6 +18,9 @@
 		1F0EA22F21A38E1D00A0F0C3 /* XMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA22E21A38E1D00A0F0C3 /* XMaster.swift */; };
 		1F0EA23121A38E2D00A0F0C3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA23021A38E2D00A0F0C3 /* Player.swift */; };
 		1F0EA23C21A485DB00A0F0C3 /* BoardWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA23A21A485DB00A0F0C3 /* BoardWindowController.swift */; };
+		1F0EA23F21A489E100A0F0C3 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA23E21A489E100A0F0C3 /* History.swift */; };
+		1F0EA24121A48A2D00A0F0C3 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA24021A48A2D00A0F0C3 /* Move.swift */; };
+		1F0EA24521A48B9000A0F0C3 /* Pos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA24421A48B9000A0F0C3 /* Pos.swift */; };
 		1FF2952921A0A62500049250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2952821A0A62500049250 /* AppDelegate.swift */; };
 		1FF2952B21A0A62500049250 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2952A21A0A62500049250 /* BoardViewController.swift */; };
 		1FF2952D21A0A62600049250 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FF2952C21A0A62600049250 /* Assets.xcassets */; };
@@ -59,6 +62,9 @@
 		1F0EA22E21A38E1D00A0F0C3 /* XMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMaster.swift; sourceTree = "<group>"; };
 		1F0EA23021A38E2D00A0F0C3 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		1F0EA23A21A485DB00A0F0C3 /* BoardWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWindowController.swift; sourceTree = "<group>"; };
+		1F0EA23E21A489E100A0F0C3 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		1F0EA24021A48A2D00A0F0C3 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
+		1F0EA24421A48B9000A0F0C3 /* Pos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pos.swift; sourceTree = "<group>"; };
 		1FF2952521A0A62500049250 /* ChineseChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FF2952821A0A62500049250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FF2952A21A0A62500049250 /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +121,27 @@
 				1F0EA22121A36BDC00A0F0C3 /* Cannon.swift */,
 			);
 			path = Identities;
+			sourceTree = "<group>";
+		};
+		1F0EA24221A48B1700A0F0C3 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				1F0EA22E21A38E1D00A0F0C3 /* XMaster.swift */,
+				1F0EA23021A38E2D00A0F0C3 /* Player.swift */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
+		1F0EA24321A48B2F00A0F0C3 /* BoardComponents */ = {
+			isa = PBXGroup;
+			children = (
+				1F0EA24021A48A2D00A0F0C3 /* Move.swift */,
+				1F0EA24421A48B9000A0F0C3 /* Pos.swift */,
+				1F0EA23E21A489E100A0F0C3 /* History.swift */,
+				1FF2955721A0CC1200049250 /* Piece.swift */,
+				1F0EA22B21A36DD000A0F0C3 /* Identities */,
+			);
+			path = BoardComponents;
 			sourceTree = "<group>";
 		};
 		1FF2951C21A0A62500049250 = {
@@ -188,12 +215,10 @@
 		1FF2955621A0CC0600049250 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1FF2955721A0CC1200049250 /* Piece.swift */,
-				1FF2955E21A0E6C000049250 /* Board.swift */,
 				1F0EA22C21A38D7700A0F0C3 /* GameState.swift */,
-				1F0EA22E21A38E1D00A0F0C3 /* XMaster.swift */,
-				1F0EA23021A38E2D00A0F0C3 /* Player.swift */,
-				1F0EA22B21A36DD000A0F0C3 /* Identities */,
+				1FF2955E21A0E6C000049250 /* Board.swift */,
+				1F0EA24321A48B2F00A0F0C3 /* BoardComponents */,
+				1F0EA24221A48B1700A0F0C3 /* AI */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F0EA23F21A489E100A0F0C3 /* History.swift in Sources */,
 				1F0EA22F21A38E1D00A0F0C3 /* XMaster.swift in Sources */,
 				1FF2955C21A0E1AA00049250 /* BoardTextureView.swift in Sources */,
 				1FF2952B21A0A62500049250 /* BoardViewController.swift in Sources */,
@@ -353,12 +379,14 @@
 				1FF2955F21A0E6C000049250 /* Board.swift in Sources */,
 				1F0EA22421A36BEF00A0F0C3 /* Pawn.swift in Sources */,
 				1F0EA22621A36BFE00A0F0C3 /* Guard.swift in Sources */,
+				1F0EA24521A48B9000A0F0C3 /* Pos.swift in Sources */,
 				1FF2955A21A0D10500049250 /* BoardView.swift in Sources */,
 				1F0EA22D21A38D7700A0F0C3 /* GameState.swift in Sources */,
 				1F0EA22221A36BDC00A0F0C3 /* Cannon.swift in Sources */,
 				1F0EA22A21A36C1C00A0F0C3 /* Elephant.swift in Sources */,
 				1FF2952921A0A62500049250 /* AppDelegate.swift in Sources */,
 				1F0EA21E21A36BD000A0F0C3 /* Car.swift in Sources */,
+				1F0EA24121A48A2D00A0F0C3 /* Move.swift in Sources */,
 				1FF2955821A0CC1200049250 /* Piece.swift in Sources */,
 				1F0EA22021A36BD600A0F0C3 /* Horse.swift in Sources */,
 			);
