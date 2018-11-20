@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0EA21E21A36BD000A0F0C3 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA21D21A36BD000A0F0C3 /* Car.swift */; };
+		1F0EA22021A36BD600A0F0C3 /* Horse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA21F21A36BD600A0F0C3 /* Horse.swift */; };
+		1F0EA22221A36BDC00A0F0C3 /* Cannon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA22121A36BDC00A0F0C3 /* Cannon.swift */; };
+		1F0EA22421A36BEF00A0F0C3 /* Pawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA22321A36BEF00A0F0C3 /* Pawn.swift */; };
+		1F0EA22621A36BFE00A0F0C3 /* Guard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA22521A36BFE00A0F0C3 /* Guard.swift */; };
+		1F0EA22821A36C0700A0F0C3 /* King.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA22721A36C0700A0F0C3 /* King.swift */; };
+		1F0EA22A21A36C1C00A0F0C3 /* Elephant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EA22921A36C1C00A0F0C3 /* Elephant.swift */; };
 		1FF2952921A0A62500049250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2952821A0A62500049250 /* AppDelegate.swift */; };
 		1FF2952B21A0A62500049250 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2952A21A0A62500049250 /* BoardViewController.swift */; };
 		1FF2952D21A0A62600049250 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FF2952C21A0A62600049250 /* Assets.xcassets */; };
@@ -37,6 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F0EA21D21A36BD000A0F0C3 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		1F0EA21F21A36BD600A0F0C3 /* Horse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Horse.swift; sourceTree = "<group>"; };
+		1F0EA22121A36BDC00A0F0C3 /* Cannon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cannon.swift; sourceTree = "<group>"; };
+		1F0EA22321A36BEF00A0F0C3 /* Pawn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pawn.swift; sourceTree = "<group>"; };
+		1F0EA22521A36BFE00A0F0C3 /* Guard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guard.swift; sourceTree = "<group>"; };
+		1F0EA22721A36C0700A0F0C3 /* King.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = King.swift; sourceTree = "<group>"; };
+		1F0EA22921A36C1C00A0F0C3 /* Elephant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elephant.swift; sourceTree = "<group>"; };
 		1FF2952521A0A62500049250 /* ChineseChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FF2952821A0A62500049250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FF2952A21A0A62500049250 /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +95,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F0EA22B21A36DD000A0F0C3 /* Identities */ = {
+			isa = PBXGroup;
+			children = (
+				1F0EA22921A36C1C00A0F0C3 /* Elephant.swift */,
+				1F0EA22321A36BEF00A0F0C3 /* Pawn.swift */,
+				1F0EA22521A36BFE00A0F0C3 /* Guard.swift */,
+				1F0EA22721A36C0700A0F0C3 /* King.swift */,
+				1F0EA21D21A36BD000A0F0C3 /* Car.swift */,
+				1F0EA21F21A36BD600A0F0C3 /* Horse.swift */,
+				1F0EA22121A36BDC00A0F0C3 /* Cannon.swift */,
+			);
+			path = Identities;
+			sourceTree = "<group>";
+		};
 		1FF2951C21A0A62500049250 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +182,7 @@
 			children = (
 				1FF2955721A0CC1200049250 /* Piece.swift */,
 				1FF2955E21A0E6C000049250 /* Board.swift */,
+				1F0EA22B21A36DD000A0F0C3 /* Identities */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,10 +329,17 @@
 			files = (
 				1FF2955C21A0E1AA00049250 /* BoardTextureView.swift in Sources */,
 				1FF2952B21A0A62500049250 /* BoardViewController.swift in Sources */,
+				1F0EA22821A36C0700A0F0C3 /* King.swift in Sources */,
 				1FF2955F21A0E6C000049250 /* Board.swift in Sources */,
+				1F0EA22421A36BEF00A0F0C3 /* Pawn.swift in Sources */,
+				1F0EA22621A36BFE00A0F0C3 /* Guard.swift in Sources */,
 				1FF2955A21A0D10500049250 /* BoardView.swift in Sources */,
+				1F0EA22221A36BDC00A0F0C3 /* Cannon.swift in Sources */,
+				1F0EA22A21A36C1C00A0F0C3 /* Elephant.swift in Sources */,
 				1FF2952921A0A62500049250 /* AppDelegate.swift in Sources */,
+				1F0EA21E21A36BD000A0F0C3 /* Car.swift in Sources */,
 				1FF2955821A0CC1200049250 /* Piece.swift in Sources */,
+				1F0EA22021A36BD600A0F0C3 /* Horse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

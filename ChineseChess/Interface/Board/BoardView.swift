@@ -55,8 +55,8 @@ import Cocoa
     
     private func drawPieces() {
         let board = Board()
-        board.stream.forEach {(pos, piece) in
-            let ellipse = NSBezierPath(ovalIn: rect(at: pos))
+        board.stream.forEach{ piece in
+            let ellipse = NSBezierPath(ovalIn: rect(at: piece.pos))
             pieceColor.setFill()
             ellipse.lineWidth = gridLineWidth
             ellipse.fill()
@@ -66,11 +66,11 @@ import Cocoa
             ellipse.stroke()
             
             // Draw Chinese character at the center
-            drawCharOverlay(for: piece, at: pos)
+            drawCharOverlay(for: piece)
         }
     }
     
-    private func drawCharOverlay(for piece: Piece, at pos: Pos) {
+    private func drawCharOverlay(for piece: Piece) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         let color = piece.color == .black ? blackColor : redColor
@@ -82,7 +82,7 @@ import Cocoa
             NSAttributedString.Key.baselineOffset  : 0,
             NSAttributedString.Key.foregroundColor : color
             ] as [NSAttributedString.Key : Any]
-        var ctr = onScreen(pos)
+        var ctr = onScreen(piece.pos)
         ctr.y += pieceRadius / 8
         let textRect = CGRect(center: ctr, size: CGSize(width: pieceRadius * 2, height: pieceRadius))
         let attrString = NSAttributedString(string: "\(char)", attributes: attributes)

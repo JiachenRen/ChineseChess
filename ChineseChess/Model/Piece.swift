@@ -12,6 +12,10 @@ import Foundation
 enum Color {
     case black
     case red
+    
+    func next() -> Color {
+        return self == .black ? .red : .black
+    }
 }
 
 enum Identity: String {
@@ -22,19 +26,37 @@ enum Identity: String {
     case pawn = "卒"
     case car = "车"
     case cannon = "炮"
+    
+    func spawn(_ color: Color) -> Piece {
+        switch self {
+        case .horse: return Horse(self, color)
+        case .elephant: return Elephant(self, color)
+        case .king: return King(self, color)
+        case .guard: return Guard(self, color)
+        case .pawn: return Pawn(self, color)
+        case .car: return Car(self, color)
+        case .cannon: return Cannon(self, color)
+        }
+    }
 }
 
 protocol PieceProtocol {
-    var identity: Identity {get set}
-    var color: Color {get set}
+    var identity: Identity {get}
+    var color: Color {get}
+    var pos: Pos {get set}
 }
 
 class Piece: PieceProtocol {
-    var identity: Identity
-    var color: Color
+    let identity: Identity
+    let color: Color
+    var pos: Pos = Pos(0, 0)
     
     init(_ identity: Identity, _ color: Color) {
         self.identity = identity
         self.color = color
+    }
+    
+    func copy() -> Piece {
+        return identity.spawn(color)
     }
 }
