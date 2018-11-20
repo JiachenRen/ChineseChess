@@ -23,6 +23,7 @@ class GameState: PlayerDelegate {
     
     func restart() {
         board = Board()
+        delegate?.gameStateDidUpdate()
     }
     
     /**

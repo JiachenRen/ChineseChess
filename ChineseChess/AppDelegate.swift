@@ -32,6 +32,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         activeGameState?.redo()
     }
     
+    @IBAction func restart(_ sender: NSMenuItem) {
+        activeGameState?.restart()
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
