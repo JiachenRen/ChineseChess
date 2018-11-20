@@ -21,6 +21,11 @@ class GameState: PlayerDelegate {
         players.updateValue(player, forKey: color)
     }
     
+    func load(_ game: String) {
+        board = Board(game)
+        delegate?.gameStateDidUpdate()
+    }
+    
     func restart() {
         board = Board()
         delegate?.gameStateDidUpdate()

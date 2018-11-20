@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Board {
+class Board: Serializable {
     var matrix = [[Piece?]]()
     var history: History<Move>
     var curPlayer: Color
@@ -38,6 +38,19 @@ class Board {
         matrix = other.matrix
         history = History(other.history)
         curPlayer = other.curPlayer
+    }
+    
+    /// Load serialized game
+    required convenience init(_ encoded: String) {
+        self.init()
+        
+        // Load history in a new instance so that it won't interfere with current game state
+        let history = History<Move>(encoded)
+        
+        // Replay history until latest game state
+        history.stack.forEach {
+            makeMove($0)
+        }
     }
     
     init() {
@@ -83,7 +96,7 @@ class Board {
     @discardableResult
     func move(_ target: Pos, to dest: Pos, recordHistory: Bool = true) -> Piece? {
         guard let piece = matrix[target.row][target.col] else {
-            fatalError()
+            return nil
         }
         set(target, nil)
         let eat = get(dest)
@@ -132,9 +145,18 @@ class Board {
     func get(_ pos: Pos) -> Piece? {
         return matrix[pos.row][pos.col]
     }
+    
+    func serialize() -> String {
+        return history.serialize()
+    }
 }
 
-class History<Element> {
+protocol Serializable {
+    func serialize() -> String
+    init(_ encoded: String)
+}
+
+class History<Element: Serializable> {
     var stack: [Element]
     var reverted: [Element]
     
@@ -146,6 +168,12 @@ class History<Element> {
     init(_ other: History) {
         stack = other.stack
         reverted = other.reverted
+    }
+    
+    required convenience init(_ encoded: String) {
+        self.init()
+        stack = encoded.split(separator: ";")
+            .map{Element(String($0))}
     }
     
     /**
@@ -178,7 +206,16 @@ class History<Element> {
     }
 }
 
-struct Move {
+extension History: Serializable {
+    func serialize() -> String {
+        var str =  stack.map{$0.serialize()}
+            .reduce(""){"\($0);\($1)"}
+        str.removeFirst()
+        return str
+    }
+}
+
+struct Move: Serializable {
     let origin: Pos
     let dest: Pos
     let eat: Piece?
@@ -188,9 +225,21 @@ struct Move {
         self.dest = to
         self.eat = eat
     }
+    
+    init(_ encoded: String) {
+        let pair = encoded.components(separatedBy: "->")
+            .map{Pos($0)}
+        origin = pair.first!
+        dest = pair.last!
+        eat = nil
+    }
+    
+    func serialize() -> String {
+        return "\(origin.serialize())->\(dest.serialize())"
+    }
 }
 
-struct Pos: Hashable {
+struct Pos: Hashable, Serializable {
     var row: Int
     var col: Int
     
@@ -209,6 +258,17 @@ struct Pos: Hashable {
     init(_ row: Int, _ col: Int) {
         self.row = row
         self.col = col
+    }
+    
+    init(_ encoded: String) {
+        let pair = encoded.split(separator: ",")
+            .map{Int($0)!}
+        row = pair.first!
+        col = pair.last!
+    }
+    
+    func serialize() -> String {
+        return "\(row),\(col)"
     }
     
     func isValid() -> Bool {
@@ -242,6 +302,7 @@ struct Pos: Hashable {
     static func -(lhs: Pos, rhs: Pos) -> Pos {
         return Pos(lhs.row - rhs.row, lhs.col - rhs.col)
     }
+    
 }
 
 
