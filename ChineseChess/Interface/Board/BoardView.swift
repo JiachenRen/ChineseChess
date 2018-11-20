@@ -44,6 +44,12 @@ import Cocoa
         return .init(x: cornerOffset, y: cornerOffset)
     }
     
+    static var indentations: [Pos] = {
+        Board().stream.filter{
+                return $0.identity == .pawn || $0.identity == .cannon
+            }.map{$0.pos}
+    }()
+    
     var cgContext: CGContext? {
         return NSGraphicsContext.current?.cgContext
     }
@@ -275,7 +281,7 @@ import Cocoa
             
             
             // Draw board rectangle
-            ctx.translateBy(x: cornerOffset, y: cornerOffset)
+            ctx.saveGState()
             let boardRect = NSRect(origin: corner.translating(0, gridLineWidth), size: .init(width: gap * 8, height: gap * 9))
             let path = NSBezierPath(rect: boardRect)
             ctx.setAlpha(1)
@@ -283,12 +289,25 @@ import Cocoa
             path.stroke()
             ctx.restoreGState()
             
-//            // Draw diagnoal lines
-//            ctx.setLineWidth(gridLineWidth)
-//            ctx.setStrokeColor(gridColor.cgColor)
-//            ctx.setLineCap(.square)
-//            ctx.setAlpha(0.5)
-//            line(from: Pos(0, 3), to: Pos(2,5))
+            // Draw indentations under pawns and cannons
+            let l = pieceRadius / 2.5
+            let g = pieceRadius / 4
+            func drawEdge(at pos: Pos, x: CGFloat, y: CGFloat) {
+                var point = onScreen(pos)
+                print("before \(g * x)")
+                point = point.translating(g * x, g * y)
+                print(point)
+                ctx.strokeLineSegments(between: [point, point.translating(l * x, 0)])
+                ctx.strokeLineSegments(between: [point, point.translating(0, l * y)])
+            }
+            BoardView.indentations.forEach {indent in
+                print(indent)
+                drawEdge(at: indent, x: 1, y: 1)
+                drawEdge(at: indent, x: 1, y: -1)
+                drawEdge(at: indent, x: -1, y: -1)
+                drawEdge(at: indent, x: -1, y: 1)
+            }
+            ctx.restoreGState()
         }
     }
     
@@ -306,7 +325,7 @@ protocol BoardViewDelegate {
 
 extension CGPoint {
     func translating(_ x: CGFloat, _ y: CGFloat) -> CGPoint{
-        return CGPoint(x: x, y: y)
+        return CGPoint(x: x + self.x, y: y + self.y)
     }
 }
 
