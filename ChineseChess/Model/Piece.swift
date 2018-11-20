@@ -51,6 +51,7 @@ class Piece: PieceProtocol {
     let identity: Identity
     let color: Color
     var pos: Pos = Pos(0, 0)
+    var board: Board!
     
     init(_ identity: Identity, _ color: Color) {
         self.identity = identity
@@ -60,15 +61,17 @@ class Piece: PieceProtocol {
     func copy() -> Piece {
         return identity.spawn(color)
     }
+
     
-    func basicFilter(_ moves: inout [Pos], _ board: Board) {
-        moves = moves.filter{$0.isValid()}.filter {
+    func availableMoves(_ board: Board) -> [Pos] {
+        self.board = board
+        return availableMoves().filter{$0.isValid()}.filter {
             board.get($0)?.color != color
         }
     }
-
+    
     /// To be overridden by subclasses. This is an empty implementation.
-    func availableMoves(_ board: Board) -> [Pos] {
+    func availableMoves() -> [Pos] {
         return [Pos]()
     }
 }

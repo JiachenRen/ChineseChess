@@ -9,19 +9,23 @@
 import Foundation
 
 class Elephant: Piece {
-    override func availableMoves(_ board: Board) -> [Pos] {
+    override func availableMoves() -> [Pos] {
         var moves = [Pos]()
         let pos = self.pos
-        let add = {(i, q) in moves.append(pos + Pos(i, q))}
+        let board = self.board!
+        let add = {(i: Int, q: Int) -> Void in
+            let eye = pos + Pos(i / 2, q / 2)
+            if eye.isValid() && board.get(eye) == nil {
+                moves.append(pos + Pos(i, q))
+            }
+        }
         add(2 , 2)
         add(2 , -2)
         add(-2 , -2)
         add(-2 , 2)
-        let isUpperHalf = pos.row <= 4
-        basicFilter(&moves, board)
-        return moves.filter{$0.isValid()}.filter {
+        return moves.filter {
             // The Elephant cannot cross the river.
-            return isUpperHalf ? $0.row <= 4 : $0.row >= 5
+            return pos.isUpperhalf == $0.isUpperhalf
         }
     }
 }

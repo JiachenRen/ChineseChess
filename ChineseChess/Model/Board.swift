@@ -194,6 +194,10 @@ struct Pos: Hashable {
     var row: Int
     var col: Int
     
+    var isUpperhalf: Bool {
+        return row <= 4
+    }
+    
     init(_ row: Int, _ col: Int) {
         self.row = row
         self.col = col
