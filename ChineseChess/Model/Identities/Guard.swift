@@ -8,6 +8,8 @@
 
 import Foundation
 
-class Guard: Piece {
-    
+class Guard: King {
+    override var cands: [Pos] {
+        return [Pos(1, 1), Pos(1, -1), Pos(-1, 1), Pos(-1, -1)]
+    }
 }

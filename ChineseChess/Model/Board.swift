@@ -198,6 +198,14 @@ struct Pos: Hashable {
         return row <= 4
     }
     
+    var inUpperPalace: Bool {
+        return row >= 0 && row <= 2 && col <= 5 && col >= 3
+    }
+    
+    var inLowerPalace: Bool {
+        return row >= 7 && row <= 9 && col <= 5 && col >= 3
+    }
+    
     init(_ row: Int, _ col: Int) {
         self.row = row
         self.col = col

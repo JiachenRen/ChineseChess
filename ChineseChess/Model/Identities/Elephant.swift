@@ -13,16 +13,12 @@ class Elephant: Piece {
         var moves = [Pos]()
         let pos = self.pos
         let board = self.board!
-        let add = {(i: Int, q: Int) -> Void in
-            let eye = pos + Pos(i / 2, q / 2)
+        [Pos(2, 2), Pos(2, -2), Pos(-2, -2), Pos(-2, 2)].forEach {
+            let eye = pos + Pos($0.row / 2, $0.col / 2)
             if eye.isValid() && board.get(eye) == nil {
-                moves.append(pos + Pos(i, q))
+                moves.append(pos + $0)
             }
         }
-        add(2 , 2)
-        add(2 , -2)
-        add(-2 , -2)
-        add(-2 , 2)
         return moves.filter {
             // The Elephant cannot cross the river.
             return pos.isUpperhalf == $0.isUpperhalf
