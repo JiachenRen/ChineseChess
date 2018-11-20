@@ -134,7 +134,7 @@ import Cocoa
                 let animation = NSAnimation(duration: 0.15, animationCurve: .easeInOut)
                 animation.animationBlockingMode = .nonblocking
                 animation.delegate = self
-                animation.progressMarks = stride(from: 0, to: 1, by: 0.05)
+                animation.progressMarks = stride(from: 0, to: 1, by: 0.1)
                     .map{NSNumber(value: $0)}
                 animation.start()
             }
@@ -147,8 +147,8 @@ import Cocoa
                     e.lineWidth = gridLineWidth * 2
                     e.stroke()
                 }
-                animateEllipse(pieceRadius * 2 * (1.7 - 0.7 * progress))
-                animateEllipse(pieceRadius * 2 * (0.3 + 0.7 * progress))
+                animateEllipse(pieceRadius * 2 * (2 - 1 * progress))
+//                animateEllipse(pieceRadius * 2 * (0.3 + 0.7 * progress))
             }
             
             // Draw Chinese character at the center
@@ -217,7 +217,7 @@ import Cocoa
         let loc = relPos(evt: event)
         if loc.x <= 0 || loc.y <= 0 {return}
         // Ensure that mouseDown and mouseUp are at the same pos.
-        if let l = mouseDownPos, l == onBoard(loc) {
+        if let l = mouseDownPos, l == onBoard(loc) && l.isValid() {
             // Moving takes priority over selection!
             if let mvs = availableMoves {
                 if let mv = (mvs.filter{$0.dest == l}.first) {
@@ -294,18 +294,20 @@ import Cocoa
             let g = pieceRadius / 4
             func drawEdge(at pos: Pos, x: CGFloat, y: CGFloat) {
                 var point = onScreen(pos)
-                print("before \(g * x)")
                 point = point.translating(g * x, g * y)
-                print(point)
+                
                 ctx.strokeLineSegments(between: [point, point.translating(l * x, 0)])
                 ctx.strokeLineSegments(between: [point, point.translating(0, l * y)])
             }
             BoardView.indentations.forEach {indent in
-                print(indent)
-                drawEdge(at: indent, x: 1, y: 1)
-                drawEdge(at: indent, x: 1, y: -1)
-                drawEdge(at: indent, x: -1, y: -1)
-                drawEdge(at: indent, x: -1, y: 1)
+                if indent.col < 8 {
+                    drawEdge(at: indent, x: 1, y: 1)
+                    drawEdge(at: indent, x: 1, y: -1)
+                }
+                if indent.col > 0 {
+                    drawEdge(at: indent, x: -1, y: -1)
+                    drawEdge(at: indent, x: -1, y: 1)
+                }
             }
             ctx.restoreGState()
         }

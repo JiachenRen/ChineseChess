@@ -38,6 +38,16 @@ class GameState: PlayerDelegate {
         requestMove()
     }
     
+    func redo() {
+        board.redo()
+        delegate?.gameStateDidUpdate()
+    }
+    
+    func undo() {
+        board.undo()
+        delegate?.gameStateDidUpdate()
+    }
+    
     func getAvailableMoves(for piece: Piece) -> [Move] {
         return piece.availableMoves(board)
             .map{Move(piece.pos, $0, board.get($0))}
